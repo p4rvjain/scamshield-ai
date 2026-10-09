@@ -15,12 +15,21 @@ app = FastAPI(
     version="1.0.0"
 )
 
+import os
+
+allowed_origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+frontend_url = os.getenv("FRONTEND_URL")
+
+if frontend_url:
+    allowed_origins.append(frontend_url.rstrip("/"))
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173"
-    ],
+    allow_origins=allowed_origins,
     allow_methods=["GET", "POST"],
     allow_headers=["Content-Type"],
 )
