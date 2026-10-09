@@ -1,5 +1,5 @@
 
-
+import { API_URL } from "./config";
 import { useEffect, useState, type ChangeEvent } from "react";
 
 import "./App.css";
@@ -117,7 +117,7 @@ const loadingMessages = [
         formData.append("file", selectedFile!);
 
         response = await fetch(
-          "http://127.0.0.1:8000/api/scan-screenshot",
+          `${API_URL}/api/scan-screenshot`,
           {
             method: "POST",
             body: formData,
@@ -128,8 +128,8 @@ const loadingMessages = [
 
 const endpoint =
   activeTab === "url"
-    ? "http://127.0.0.1:8000/api/scan-url-hybrid"
-    : "http://127.0.0.1:8000/api/scan-hybrid";
+    ? `${API_URL}/api/scan-url-hybrid`
+    : `${API_URL}/api/scan-hybrid`;
 
 
 
